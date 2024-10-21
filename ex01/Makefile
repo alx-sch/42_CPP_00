@@ -6,7 +6,7 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/17 15:47:17 by aschenk          ###   ########.fr        #
+#    Updated: 2024/10/21 20:21:23 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME :=			phonebook
 
 # SOURCE FILES
 SRCS_DIR :=		src
-SRCS_FILES :=	$(NAME).cpp
+SRCS_FILES :=	main.cpp \
+				PhoneBook.cpp \
+				Contacts.cpp
 
 SRCS :=			$(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
@@ -22,9 +24,16 @@ SRCS :=			$(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 OBJS_DIR :=		obj
 OBJS :=			$(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
 
+# HEADER FILES
+HDRS_DIR :=		include
+HDRS_FILES := 	PhoneBook.hpp \
+				Contacts.hpp
+HDRS :=			$(addprefix $(HDRS_DIR)/, $(HDRS_FILES))
+
 # COMPILER
 CC :=			c++
 CFLAGS :=		-Werror -Wextra -Wall
+CFLAGS +=		-I$(HDRS_DIR)
 CFLAGS +=		-std=c++98
 CFLAGS +=		-Wpedantic
 #CFLAGS +=		-g
@@ -60,7 +69,7 @@ $(NAME):	$(OBJS)
 	@echo "(__)  (_) (_)(_____)(_)\_)(____)(____/(_____)(_____)(_)\_)"
 	@echo -n "$(RESET)"
 
-	@echo "\n$(BOLD)$(YELLOW)Usage: './$(NAME) [<message to shout>]'$(RESET)"
+	@echo "\n$(BOLD)$(YELLOW)Usage: './$(NAME)'$(RESET)"
 
 ## COMPILATION PROGRESS BAR ##
 # Rule to define how to generate object files (%.o) from corresponding
@@ -70,7 +79,7 @@ $(NAME):	$(OBJS)
 # -c:		Generates o. files without linking.
 # -$<:		Represents the first prerequisite (the c. file).
 # -o $@:	Output file name;  '$@' is replaced with target name (the o. file).
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp $(HDRS)
 	@mkdir -p $(@D)
 	@$(eval SRC_NUM := $(shell expr $(SRC_NUM) + 1))
 	@$(eval PERCENT := $(shell printf "%.0f" $(shell echo "scale=4; $(SRC_NUM) / $(TOTAL_SRCS) * 100" | bc)))

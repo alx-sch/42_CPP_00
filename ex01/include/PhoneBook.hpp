@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:43:27 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/16 12:44:47 by aschenk          ###   ########.fr       */
+/*   Created: 2024/10/21 19:49:38 by aschenk           #+#    #+#             */
+/*   Updated: 2024/10/21 20:01:22 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-int	main(void)
+# include "Contacts.hpp"
+# include <stdlib.h>
+# include <string>
+
+
+
+class PhoneBook
 {
-	std::cout << "Hello, world!" << std::endl;
+	public:
+		PhoneBook()
+		{
+			number_of_contact = 0;
+		}
+		void	add_data();
+		bool	SearchContact();
+		void	PrintAllData();
 
-	return (0);
-}
+	private:
+		Contacts	contacts[8];
+		int			number_of_contact;
+};
+
+#endif
