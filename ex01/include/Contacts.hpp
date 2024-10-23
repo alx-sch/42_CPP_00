@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:34 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/21 20:15:23 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/22 18:57:13 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,23 @@
 # include <iomanip>
 # include <sstream>
 
-# define INIT_PROMPT "\x1b[32m the awsome PhoneBook \033[0m\n"
-# define PROMPT "\x1b[33mPlease entre your command\033[0m\n  \x1b[32m[ADD] [SEARCH] [EXIT]\033[0m\n"
-# define ERR_CMD "\x1b[31m 🚫 error command not found 🚫 \033[0m\n"
+# define MAX_INPUT_L	16
+
+// Define ANSI escape codes for colors and styles
+# define RESET			"\033[0m"
+# define BOLD			"\033[1m"
+# define GREEN			"\033[32m"
+# define YELLOW			"\033[33m"
+# define RED			"\033[91m"
+# define ORANGE			"\033[38;5;208m"
+# define BLUE 			"\033[34m"
+# define VIOLET 		"\033[35;1m"
+
+#define TITLE			BOLD ORANGE	"┌─────────────────────────┐\n" \
+									"│  ☎️ My Tiny Phonebook ☎️  │\n" \
+									"└─────────────────────────┘\n\n" RESET
+# define PROMPT			YELLOW "Please enter a command:\n" GREEN "[ADD]  [SEARCH]  [EXIT]\n" RESET
+# define ERR_CMD		RED BOLD "❌ Command not found ❌\n" RESET
 # define DONE "\x1b[32m Thank you for using our awsome PhoneBook \033[0m\n"
 # define INDEX_TO_DISPLAY "\x1b[33mPlease entre your Contact index\033[0m\n"
 # define PIPE "\x1b[32m|\033[0m"
