@@ -6,14 +6,14 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/21 20:19:46 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/23 11:45:03 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contacts.hpp"
 
-#include "Contacts.hpp"
+#include "config.hpp"
 
 /**
  * @brief Truncates the input string to 10 characters and prints it.
