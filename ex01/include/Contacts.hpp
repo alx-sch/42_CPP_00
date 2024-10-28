@@ -6,30 +6,33 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:34 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/23 11:43:42 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/28 22:07:46 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACTS_HPP
 # define CONTACTS_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <sstream>
-
+# include "main.hpp"
 
 class	Contacts
 {
-	private:
-		std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string phone_number;
-		std::string darkest_secret;
 	public:
-		void	add_contact(Contacts *contact);
-		void	printContacts(Contacts contact, int index);
-		void	printContact(Contacts contact);
+
+		Contacts();
+		~Contacts();
+
+		void	addContact();							// Add a contact
+		void	printContactOverview(int index) const;	// Print an overview for this contact
+		void	printContactAll() const;				// Print details for this contact
+
+	private:
+
+		std::string _first_name;
+		std::string _last_name;
+		std::string _nickname;
+		std::string _phone_number;
+		std::string _darkest_secret;
 };
 
 void	log_trunc(const std::string& str);

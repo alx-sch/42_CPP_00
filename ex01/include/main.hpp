@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 19:49:38 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 22:12:30 by aschenk          ###   ########.fr       */
+/*   Created: 2024/10/28 20:01:16 by aschenk           #+#    #+#             */
+/*   Updated: 2024/10/28 21:39:05 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+# include <stdlib.h> // for exit(), atoi()
 
-# include "main.hpp"
+# include <iostream> // for std::cout, std::cin
+# include <iomanip> // for std:setw
+# include <sstream> // std::ostringstream
 
-class PhoneBook
-{
-	public:
-		PhoneBook();
-		~PhoneBook();
+# include "config.hpp"
+# include "PhoneBook.hpp"
+# include "Contacts.hpp"
 
-		void	addContact();			// Add a contact to the phonebook
-		void	showContacts() const;	// Show contacts in the phonebook
+// utils.cpp
 
-	private:
-		int			nr_contacts;		// Number of contacts in the phonebook
-		Contacts	contacts[8];		// Array of contacts
-};
-
-#endif
+void	exitEOF();
+void	truncAndPrint(const std::string& str);

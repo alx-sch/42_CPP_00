@@ -6,61 +6,106 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/23 11:46:22 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/28 22:24:42 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.hpp"
-#include "PhoneBook.hpp"
-#include "Contacts.hpp"
+/**
+Implementation of the PhoneBook class, managing contact storage and display.
+*/
 
-void	PhoneBook::add_data()
+#include "main.hpp"
+
+PhoneBook::PhoneBook() : nr_contacts(0) {}
+
+PhoneBook::~PhoneBook() {} // Empty / default
+
+/**
+Adds a new contact to the phonebook.
+Stores the contact at the next available index, overwriting the oldest entry if full.
+*/
+void	PhoneBook::addContact()
 {
 	int			index;
-	Contacts	Contact;
 
-	index = this->number_of_contact % 8;
-	Contact.add_contact(&(this->contacts[index]));
-	this->number_of_contact++;
+	index = this->nr_contacts % 8;
+	this->contacts[index].addContact();
+	this->nr_contacts++;
+
+	return ;
 }
 
-void	PhoneBook::PrintAllData()
+/**
+Displays the list of contacts in the phonebook.
+
+This function shows an overview of contacts (up to 8) stored in the phonebook
+and prompts the user to select one by entering the corresponding index number.
+
+The function handles invalid input and selection, providing appropriate feedback
+to the user.
+*/
+void	PhoneBook::showContacts() const
 {
-	int			search_index;
-	std::string	line;
 	int			index;
-	Contacts	Contact;
+	int			index_select;
+	std::string	input;
 
-	index = 0;
-	if (this->number_of_contact > 0)
+	// If there are no contacts added yet
+	if (this->nr_contacts == 0)
 	{
-		std::cout << INDEX_TABLE;
-		while(index < this->number_of_contact && index < 8)
+		std::cout << IDX_TABLE << std::endl << std::endl;
+		std::cout << NO_CONTACTS << std::endl;
+		return ;
+	}
+
+	// Print list of contacts
+	std::cout << IDX_TABLE << std::endl;
+	index = 0;
+	while(index < this->nr_contacts && index < 8)
+	{
+		this->contacts[index].printContactOverview(index);
+		index++;
+	}
+	std::cout << std::endl;
+
+	// Contact selection / display
+	while (true)
+	{
+		// Prompt user to select a contact
+		if (this->nr_contacts == 1)
 		{
-			Contact.printContacts(this->contacts[index], index);
-			index++;
+			std::cout << SEL_CONTACT_1;
 		}
-		while (1)
+		else
 		{
-			std::cout << INDEX_TO_DISPLAY;
-			std::getline(std::cin, line);
-			search_index = atoi(line.c_str());
-			search_index -= 1;
-			if (line[0] == '\0')
-			{
-				std::cout << CNTR_D;
-				exit(1);
-			}
-			else if (search_index >= 0 && search_index < this->number_of_contact && search_index < 8)
-			{
-				Contact.printContact(this->contacts[search_index]);
-				break ;
-			}
-			else
-				std::cout << NO_INDEX;
+			std::cout << SEL_CONTACT << YELLOW << std::min(nr_contacts, 8) << "): " RESET;
 		}
 
+		std::getline(std::cin, input);
+
+		 // Check for EOF in user input (CTRL + D)
+		if (std::cin.eof())
+		{
+			exitEOF();
+		}
+
+		// Check if input is empty (user pressed Enter without typing anything)
+		if (input.empty())
+		{
+			break ;
+		}
+
+		// Process user input (index selection)
+		index_select = atoi(input.c_str());  // Converts input to const char* and then to int
+		index_select -= 1;
+		if (index_select >= 0 && index_select < this->nr_contacts && index_select < 8) // Valid selection
+		{
+			this->contacts[index_select].printContactAll();
+			break ;
+		}
+		else // Invalid selection
+			std::cout << INV_IDX << std::endl;
 	}
-	else
-		std::cout << PHONEBOOK_EMPTY;
+
+	return ;
 }

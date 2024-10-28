@@ -6,7 +6,7 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/23 11:43:22 by aschenk          ###   ########.fr        #
+#    Updated: 2024/10/28 20:13:47 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME :=			phonebook
 # SOURCE FILES
 SRCS_DIR :=		src
 SRCS_FILES :=	main.cpp \
+				utils.cpp \
 				PhoneBook.cpp \
 				Contacts.cpp
 

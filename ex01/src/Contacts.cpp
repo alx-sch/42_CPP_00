@@ -6,55 +6,44 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/23 11:45:03 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/28 22:07:13 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contacts.hpp"
+#include "main.hpp"
 
-#include "config.hpp"
-
-/**
- * @brief Truncates the input string to 10 characters and prints it.
- *
- * If the string is longer than 10 characters, it will print the first
- * 9 characters followed by a dot. If the string is shorter or equal to
- * 10 characters, it will print the string as is, right-aligned.
- *
- * @param str The string to be truncated and printed.
- */
-void log_trunc(const std::string& str)
+Contacts::Contacts() // Empty
 {
-    if (str.length() > 10)
-        std::cout << str.substr(0, 9) << ".";
-    else
-        std::cout << std::setw(10) << str;
+	return ;
 }
 
+Contacts::~Contacts() // Empty
+{
+	return ;
+}
 
-void	Contacts::printContacts(Contacts contact, int index)
+void	Contacts::printContactOverview(int index) const
 {
 	std::ostringstream oss;
-
 	oss << (index + 1);
-	log_trunc(oss.str());
+
+	truncAndPrint(oss.str());
 	std::cout << PIPE;
-	log_trunc(contact.first_name);
+	truncAndPrint(this->_first_name);
 	std::cout << PIPE;
-	log_trunc(contact.last_name);
+	truncAndPrint(this->_last_name);
 	std::cout << PIPE;
-	log_trunc(contact.nickname);
+	truncAndPrint(this->_nickname);
 	std::cout << std::endl;
 }
 
-void	Contacts::printContact(Contacts contact)
+void	Contacts::printContactAll() const
 {
-	std::cout << "First name: " << contact.first_name << std::endl;
-	std::cout << "Last name: " << contact.last_name << std::endl;
-	std::cout << "Nickname: " << contact.nickname << std::endl;
-	std::cout << "Phone number: " << contact.phone_number << std::endl;
-	std::cout << "Darkest secret: " << contact.darkest_secret << std::endl;
+	std::cout << "First name: " << this->_first_name << std::endl;
+	std::cout << "Last name: " << this->_last_name << std::endl;
+	std::cout << "Nickname: " << this->_nickname << std::endl;
+	std::cout << "Phone number: " << this->_phone_number << std::endl;
+	std::cout << "Darkest secret: " << this->_darkest_secret << std::endl;
 }
 
 std::string	data_no_null(const char *prompt)
@@ -75,14 +64,14 @@ std::string	data_no_null(const char *prompt)
 	}
 }
 
-void	Contacts::add_contact(Contacts *contact)
+void	Contacts::addContact()
 {
 	std::string	input;
 	PhoneBook	Phone;
 
-	(*contact).first_name = data_no_null("   [First name]   > ");
-	(*contact).last_name = data_no_null("    [Last name]   > ");
-	(*contact).nickname = data_no_null("    [Nickname]    > ");
-	(*contact).phone_number = data_no_null("  [Phone number]  > ");
-	(*contact).darkest_secret = data_no_null(" [Darkest secret] > ");
+	this->_first_name = data_no_null("     [First name] > ");
+	this->_last_name = data_no_null("      [Last name] > ");
+	this->_nickname = data_no_null("       [Nickname] > ");
+	this->_phone_number = data_no_null("   [Phone number] > ");
+	this->_darkest_secret = data_no_null(" [Darkest secret] > ");
 }
