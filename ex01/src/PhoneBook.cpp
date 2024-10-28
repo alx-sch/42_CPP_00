@@ -6,12 +6,12 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 22:24:42 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/28 22:28:43 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
-Implementation of the PhoneBook class, managing contact storage and display.
+Implementation of the PhoneBook class, managing contact storage and display..
 */
 
 #include "main.hpp"
