@@ -6,27 +6,21 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 22:07:13 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/29 17:42:19 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-Contacts::Contacts() // Empty
-{
-	return ;
-}
+Contacts::Contacts() {}		// Empty / default
 
-Contacts::~Contacts() // Empty
-{
-	return ;
-}
+Contacts::~Contacts() {}	// Empty / default
 
 void	Contacts::printContactOverview(int index) const
 {
-	std::ostringstream oss;
-	oss << (index + 1);
+	std::ostringstream oss; // Type of output stream that holds its data in a string buffer (Output String Stream)
 
+	oss << (index + 1); // Conversion into a string format and stored in the internal buffer of oss
 	truncAndPrint(oss.str());
 	std::cout << PIPE;
 	truncAndPrint(this->_first_name);
