@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:48 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 22:04:39 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/30 14:14:14 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 int main(void)
 {
 	PhoneBook		Phonebook;
-	Contacts		Contact;
 	std::string 	input;
-	std::string 	test;
 
 	std::cout << TITLE << std::endl;
+
 	while (true)
 	{
 		std::cout << std::endl << PROMPT << std::endl;
@@ -49,5 +48,6 @@ int main(void)
 		else
 			std::cout << ERR_NOT_FOUND << std::endl;
 	}
+
 	return (0);
 }

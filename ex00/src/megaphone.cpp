@@ -6,21 +6,20 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:43:27 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 20:20:05 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/30 14:21:01 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream> // for std::cout
-#include <cctype>   // for toupper
 
 /**
 Converts a character to uppercase and prints it.
 
- @param x 	The character to convert and print.
+ @param c 	The character to convert and print.
 */
-static void shout(char x)
+static void shout(char c)
 {
-	std::cout << (char)toupper(x);
+	std::cout << (char)toupper(c);
 }
 
 /**

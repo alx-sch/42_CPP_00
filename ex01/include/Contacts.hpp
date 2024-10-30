@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:34 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/29 17:32:26 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/30 14:09:12 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ class	Contacts
 
 	private:
 
-		std::string _first_name;
-		std::string _last_name;
+		std::string _firstName;
+		std::string _lastName;
 		std::string _nickname;
-		std::string _phone_number;
-		std::string _darkest_secret;
+		std::string _phoneNumber;
+		std::string _darkestSecret;
 };
-
-void	log_trunc(const std::string& str);
 
 #endif

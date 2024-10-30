@@ -6,9 +6,13 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:43:03 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/29 17:34:38 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/30 14:08:39 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+Defines ANSI escape codes used for formatting, as well as prompts and error messages etc.
+*/
 
 #ifndef CONFIG_HPP
 # define CONFIG_HPP
@@ -16,6 +20,7 @@
 # define MAX_INPUT		32
 
 // Define ANSI escape codes for colors and styles
+
 # define RESET			"\033[0m"
 # define BOLD			"\033[1m"
 # define GREEN			"\033[32m"
@@ -35,16 +40,18 @@
 
 // SEARCH
 
-# define IDX_TABLE		GREEN "|     Index|    F_Name|    L_Name|  Nickname|" RESET
+# define IDX_TABLE		GREEN "|     " BOLD "Index" RESET GREEN "|    " BOLD "F_Name" \
+						RESET GREEN "|    " BOLD "L_Name" RESET GREEN "|  " BOLD "Nickname"  RESET GREEN "|" RESET
 # define NO_CONTACTS 	YELLOW BOLD "📒 Phonebook is empty! No contacts added yet." RESET
 # define SEL_CONTACT_1	YELLOW "Select contact (index): " RESET
 # define SEL_CONTACT	YELLOW "Select contact (1-" RESET
 # define INV_IDX		RED BOLD "❌ Invalid index (press Enter to leave) ❌" RESET
 # define PIPE 			GREEN "|" RESET
 
+// ADD
 
-# define ADD_PROCCES "\x1b[32mADD\033[0m"
-# define EMPTY_FIELD "\x1b[31m 🚫 Empty Field 🚫 \033[0m\n"
-# define CNTR_D "\x1b[31m Exit \033[0m\n"
+# define ADD 			GREEN "ADD" RESET
+# define EMPTY_FIELD	RED BOLD "❌ Cannot be empty ❌" RESET
+# define INV_PHONE_NR	RED BOLD "❌ Invalid phone number! Please use digits [0-9], spaces, and characters [+() -]. ❌" RESET
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/28 20:13:47 by aschenk          ###   ########.fr        #
+#    Updated: 2024/10/30 13:50:42 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ OBJS :=			$(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
 
 # HEADER FILES
 HDRS_DIR :=		include
-HDRS_FILES :=	config.hpp \
+HDRS_FILES :=	main.hpp \
+				config.hpp \
 				PhoneBook.hpp \
 				Contacts.hpp
 HDRS :=			$(addprefix $(HDRS_DIR)/, $(HDRS_FILES))

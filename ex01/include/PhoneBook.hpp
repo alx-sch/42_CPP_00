@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:38 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/28 22:12:30 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/10/30 13:33:20 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class PhoneBook
 		void	showContacts() const;	// Show contacts in the phonebook
 
 	private:
-		int			nr_contacts;		// Number of contacts in the phonebook
+		int			nrContacts;			// Number of contacts in the phonebook
 		Contacts	contacts[8];		// Array of contacts
 };
 
