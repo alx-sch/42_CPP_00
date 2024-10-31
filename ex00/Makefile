@@ -6,21 +6,17 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/17 15:44:07 by aschenk          ###   ########.fr        #
+#    Updated: 2024/10/31 12:01:49 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME :=			megaphone
 
 # SOURCE FILES
-SRCS_DIR :=		src
-SRCS_FILES :=	$(NAME).cpp
-
-SRCS :=			$(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
+SRCS :=			$(NAME).cpp
 
 # OBJECT FILES
-OBJS_DIR :=		obj
-OBJS :=			$(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
+OBJS :=			$(SRCS:%.cpp=%.o)
 
 # COMPILER
 CC :=			c++
@@ -86,7 +82,7 @@ $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
 
 # Rule to remove all generated object files.
 clean:
-	@rm -rf $(OBJS_DIR)
+	@rm -f $(OBJS)
 	@echo "$(BOLD)$(RED)$(NAME) object files removed.$(RESET)"
 
 # Rule to remove all generated object files and the program executable.
