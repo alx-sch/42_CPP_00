@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:43:27 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 12:31:06 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 16:40:56 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,23 @@
 #include <fstream>
 #include <ctime>
 
-// Static file stream for logging
-std::ofstream logFile("timestamp.log");
+// Function to get the log file stream
+std::ofstream& getLogFile() {
+    static std::ofstream logFile;
+    static bool initialized = false;
+
+    if (!initialized) {
+        // Get current time
+        std::time_t now = std::time(nullptr);
+        now += 3600; // Adjust for UTC+1
+        char buf[20];
+        std::strftime(buf, sizeof(buf), "%Y%m%d_%H%M%S.log", std::localtime(&now));
+        logFile.open(buf);
+        initialized = true;
+    }
+
+    return logFile;
+}
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -28,18 +43,19 @@ int Account::_totalNbWithdrawals = 0;
 void Account::_displayTimestamp() {
     // Get current time
     std::time_t now = std::time(nullptr);
+    now += 3600; // Adjust for UTC+1
     char buf[20];
     std::strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S] ", std::localtime(&now));
-    logFile << buf;
+    getLogFile() << buf;
 }
 
 // Static function to display account info
 void Account::displayAccountsInfos() {
     _displayTimestamp();
-    logFile << "accounts:" << _nbAccounts
-            << ";total:" << _totalAmount
-            << ";deposits:" << _totalNbDeposits
-            << ";withdrawals:" << _totalNbWithdrawals << std::endl;
+    getLogFile() << "accounts:" << _nbAccounts
+                 << ";total:" << _totalAmount
+                 << ";deposits:" << _totalNbDeposits
+                 << ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
 
 // Constructor
@@ -49,15 +65,15 @@ Account::Account(int initial_deposit)
     _totalAmount += initial_deposit;
 
     _displayTimestamp();
-    logFile << "index:" << _accountIndex
-            << ";amount:" << _amount << ";created" << std::endl;
+    getLogFile() << "index:" << _accountIndex
+                 << ";amount:" << _amount << ";created" << std::endl;
 }
 
 // Destructor
 Account::~Account() {
     _displayTimestamp();
-    logFile << "index:" << _accountIndex
-            << ";amount:" << _amount << ";closed" << std::endl;
+    getLogFile() << "index:" << _accountIndex
+                 << ";amount:" << _amount << ";closed" << std::endl;
 }
 
 // Function to make a deposit
@@ -68,18 +84,18 @@ void Account::makeDeposit(int deposit) {
     _totalAmount += deposit;
 
     _displayTimestamp();
-    logFile << "index:" << _accountIndex
-            << ";p_amount:" << _amount - deposit
-            << ";deposit:" << deposit
-            << ";amount:" << _amount
-            << ";nb_deposits:" << _nbDeposits << std::endl;
+    getLogFile() << "index:" << _accountIndex
+                 << ";p_amount:" << _amount - deposit
+                 << ";deposit:" << deposit
+                 << ";amount:" << _amount
+                 << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
 // Function to make a withdrawal
 bool Account::makeWithdrawal(int withdrawal) {
     _displayTimestamp();
-    logFile << "index:" << _accountIndex
-            << ";p_amount:" << _amount;
+    getLogFile() << "index:" << _accountIndex
+                 << ";p_amount:" << _amount;
 
     if (_amount >= withdrawal) {
         _amount -= withdrawal;
@@ -87,12 +103,12 @@ bool Account::makeWithdrawal(int withdrawal) {
         _totalNbWithdrawals++;
         _totalAmount -= withdrawal;
 
-        logFile << ";withdrawal:" << withdrawal
-                << ";amount:" << _amount
-                << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
+        getLogFile() << ";withdrawal:" << withdrawal
+                     << ";amount:" << _amount
+                     << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
         return true;
     } else {
-        logFile << ";withdrawal:refused" << std::endl;
+        getLogFile() << ";withdrawal:refused" << std::endl;
         return false;
     }
 }
@@ -105,8 +121,8 @@ int Account::checkAmount() const {
 // Function to display account status
 void Account::displayStatus() const {
     _displayTimestamp();
-    logFile << "index:" << _accountIndex
-            << ";amount:" << _amount
-            << ";deposits:" << _nbDeposits
-            << ";withdrawals:" << _nbWithdrawals << std::endl;
+    getLogFile() << "index:" << _accountIndex
+                 << ";amount:" << _amount
+                 << ";deposits:" << _nbDeposits
+                 << ";withdrawals:" << _nbWithdrawals << std::endl;
 }

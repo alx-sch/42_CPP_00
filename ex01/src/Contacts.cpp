@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 12:41:23 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:34:05 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void truncAndRightAlign(const std::string& str)
 		std::cout << str.substr(0, 9) << ".";	// Print the first 9 chars followed by a dot
 	else
 		std::cout << std::setw(10) << str;		// Print entire string right-aligned with width of 10 chars.
+
+	return ;
 }
 
 /**

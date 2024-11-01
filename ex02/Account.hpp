@@ -21,7 +21,7 @@ class Account {
 
 public:
 
-	typedef Account		t; // Define a type `t` alias for the Account class
+	typedef Account		t; 					// Define a type `t` alias for the Account class
 
 	static int	getNbAccounts( void ); 		// Returns the number of accounts
 	static int	getTotalAmount( void );		// Returns the total amount of all accounts

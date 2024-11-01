@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 12:41:33 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:34:51 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Implementation of the `PhoneBook` class, managing contact storage and display.
 
 #include "main.hpp"
 
-PhoneBook::PhoneBook() : _nrContacts(0) {}
+PhoneBook::PhoneBook() : _nrContacts(0) {}	// List initialization of _nrContacts
 
 PhoneBook::~PhoneBook() {}	// Empty / default
 

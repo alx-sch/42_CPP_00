@@ -6,11 +6,11 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/11/01 12:43:00 by aschenk          ###   ########.fr        #
+#    Updated: 2024/11/01 15:49:22 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=			accounts
+NAME :=			test_accounts
 
 # SOURCE FILES
 SRCS :=			Account.cpp \
