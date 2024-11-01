@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/30 13:34:35 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 12:41:33 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Implementation of the `PhoneBook` class, managing contact storage and display.
 
 #include "main.hpp"
 
-PhoneBook::PhoneBook() : nrContacts(0) {}
+PhoneBook::PhoneBook() : _nrContacts(0) {}
 
 PhoneBook::~PhoneBook() {}	// Empty / default
 
@@ -32,9 +32,9 @@ void	PhoneBook::addContact()
 {
 	int			index;
 
-	index = this->nrContacts % 8;
-	this->contacts[index].addContact();
-	this->nrContacts++;
+	index = this->_nrContacts % 8;
+	this->_contacts[index].addContact();
+	this->_nrContacts++;
 
 	return ;
 }
@@ -55,7 +55,7 @@ void	PhoneBook::showContacts() const
 	std::string	input;
 
 	// If there are no contacts added yet
-	if (this->nrContacts == 0)
+	if (this->_nrContacts == 0)
 	{
 		std::cout << IDX_TABLE << std::endl << std::endl;
 		std::cout << NO_CONTACTS << std::endl;
@@ -65,9 +65,9 @@ void	PhoneBook::showContacts() const
 	// Print list of contacts
 	std::cout << IDX_TABLE << std::endl;
 	index = 0;
-	while(index < this->nrContacts && index < 8)
+	while(index < this->_nrContacts && index < 8)
 	{
-		this->contacts[index].printContactOverview(index);
+		this->_contacts[index].printContactOverview(index);
 		index++;
 	}
 	std::cout << std::endl;
@@ -76,13 +76,13 @@ void	PhoneBook::showContacts() const
 	while (true)
 	{
 		// Prompt user to select a contact
-		if (this->nrContacts == 1)
+		if (this->_nrContacts == 1)
 		{
 			std::cout << SEL_CONTACT_1;
 		}
 		else
 		{
-			std::cout << SEL_CONTACT << YELLOW << std::min(nrContacts, 8) << "): " RESET;
+			std::cout << SEL_CONTACT << YELLOW << std::min(_nrContacts, 8) << "): " RESET;
 		}
 
 		std::getline(std::cin, input);
@@ -102,9 +102,9 @@ void	PhoneBook::showContacts() const
 		// Process user input (index selection)
 		indexSelect = atoi(input.c_str());  // Converts input to const char* and then to int
 		indexSelect -= 1;
-		if (indexSelect >= 0 && indexSelect < this->nrContacts && indexSelect < 8) // Valid selection
+		if (indexSelect >= 0 && indexSelect < this->_nrContacts && indexSelect < 8) // Valid selection
 		{
-			this->contacts[indexSelect].printContactAll();
+			this->_contacts[indexSelect].printContactAll();
 			break ;
 		}
 		else // Invalid selection

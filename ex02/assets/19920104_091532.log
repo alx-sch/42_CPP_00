@@ -1,4 +1,5 @@
 // Account Creation: Matches the initialization of accounts vector in tests.cpp
+// Likely handled by the constructor ~Account(), as not handled by tests.cpp
 [19920104_091532] index:0;amount:42;created
 [19920104_091532] index:1;amount:54;created
 [19920104_091532] index:2;amount:957;created

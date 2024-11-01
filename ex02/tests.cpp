@@ -43,14 +43,16 @@ int		main( void ) {
 
 	// Display initial account information
 	Account::displayAccountsInfos(); // display the number of accounts, total amount, total number of deposits, and total number of withdrawals
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) ); // display the status of each account
+	// Display the status of each account
+	// std::mem_fun_ref() is deprecated in C++11 and removed in C++17 (std::mem_fn is modern replacement) -> warning message while compiling
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) ); 	// std::mem_fun_ref(&Account::displayStatus) creates a function object that, when called, invokes the displayStatus() member function on an Account object.
 
 	// Process deposits
 	for ( acc_int_t it( acc_begin, dep_begin );
 		  it.first != acc_end && it.second != dep_end;
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeDeposit( *(it.second) ); 
+		(*(it.first)).makeDeposit( *(it.second) );
 	}
 
 	// Display account information after deposits

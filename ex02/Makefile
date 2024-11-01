@@ -6,27 +6,21 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/17 16:02:08 by aschenk          ###   ########.fr        #
+#    Updated: 2024/11/01 12:43:00 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=			account
+NAME :=			accounts
 
 # SOURCE FILES
-SRCS_DIR :=		src
-SRCS_FILES :=	Account.cpp \
-
-
-SRCS :=			$(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
+SRCS :=			Account.cpp \
+				tests.cpp
 
 # OBJECT FILES
-OBJS_DIR :=		obj
-OBJS :=			$(SRCS:$(SRCS_DIR)/%.cpp=$(OBJS_DIR)/%.o)
+OBJS :=			$(SRCS:%.cpp=%.o)
 
 # HEADER FILES
-HDRS_DIR :=		include
-HDRS_FILES := 	Account.hpp
-HDRS :=			$(addprefix $(HDRS_DIR)/, $(HDRS_FILES))
+HDRS :=			Account.hpp
 
 # COMPILER
 CC :=			c++
@@ -61,13 +55,14 @@ $(NAME):	$(OBJS)
 	@echo "$(BOLD)$(YELLOW)\n$(NAME) successfully compiled.$(RESET)"
 
 	@echo -n "$(BOLD)$(GREEN)"
-	@echo "   __    ___  ___  _____  __  __  _  _  ____ "
-	@echo "  /__\  / __)/ __)(  _  )(  )(  )( \( )(_  _)"
-	@echo " /(__)\( (__( (__  )(_)(  )(__)(  )  (   )(  "
-	@echo "(__)(__)\___)\___)(_____)(______)(_)\_) (__) "
+	@echo "   _   ___ ___ ___  _   _ _  _ _____ ___"
+	@echo "  /_\ / __/ __/ _ \| | | | \| |_   _/ __| "
+	@echo " / _ \ (_| (_| (_) | |_| | .\` | | | \__ \ "
+	@echo "/_/ \_\___\___\___/ \___/|_|\_| |_| |___/"
 	@echo -n "$(RESET)"
 
-	@echo "\n$(BOLD)$(YELLOW)Usage: './$(NAME) [<message to shout>]'$(RESET)"
+	@echo "\n$(BOLD)$(YELLOW)Usage: './$(NAME)'$(RESET)"
+	@echo "$(BOLD)$(YELLOW)The output will be saved to '[timestamp].log'.$(RESET)"
 
 ## COMPILATION PROGRESS BAR ##
 # Rule to define how to generate object files (%.o) from corresponding
@@ -93,13 +88,14 @@ $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp $(HDRS)
 
 # Rule to remove all generated object files.
 clean:
-	@rm -rf $(OBJS_DIR)
+	@rm -f $(OBJS)
 	@echo "$(BOLD)$(RED)$(NAME) object files removed.$(RESET)"
 
-# Rule to remove all generated object files and the program executable.
+# Rule to remove all generated object files, the program executable, and log files.
 fclean:	clean
 	@rm -f $(NAME)
-	@echo "$(BOLD)$(RED)$(NAME) removed.$(RESET)"
+	@rm -f $(NAME) *.log
+	@echo "$(BOLD)$(RED)$(NAME) and .log files removed.$(RESET)"
 
 # Rule to remove all generated object files, the program executable,
 # and then rebuild the program.

@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/30 14:19:03 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 12:41:23 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,26 +83,26 @@ Checks if a given string is empty or contains only whitespace characters.
  @param str 	The string to be checked.
 
  @return 		`1` if the string is empty or contains only whitespace characters;
-          		`0` if the string contains any non-whitespace characters.
+				`0` if the string contains any non-whitespace characters.
 */
 static int isEmptyOrWhitespace(const std::string& str)
 {
 	size_t	i;
 
-    if (str.empty())
+	if (str.empty())
 	{
 		return (1); // The string is empty.
 	}
 
-    for (i = 0; i < str.length(); ++i)
-    {
-        if (!std::isspace(static_cast<unsigned int>(str[i]))) // C++-style casting, safter than C-style casting: (unsigned char)(str[i])
-        {
-            return (0); // Found a non-whitespace character
-        }
-    }
+	for (i = 0; i < str.length(); ++i)
+	{
+		if (!std::isspace(static_cast<unsigned int>(str[i]))) // C++-style casting, safter than C-style casting: (unsigned char)(str[i])
+		{
+			return (0); // Found a non-whitespace character
+		}
+	}
 
-    return (1); // The string contains only whitespace
+	return (1); // The string contains only whitespace
 }
 
 /**
@@ -115,25 +115,25 @@ such as '+', '-', '(', and ')'.
  @param phoneNumber 	String representing the phone number to validate.
 
  @return 				`1` if the phone number is valid;
- 						`0` if it contains any invalid characters.
+						`0` if it contains any invalid characters.
 */
 static int isValidPhoneNumber(const std::string& phoneNumber)
 {
 	size_t	i;
 	char 	c;
 
-    // Check if the phone number contains only digits, spaces, and allowed characters
-    for (i = 0; i < phoneNumber.length(); ++i)
+	// Check if the phone number contains only digits, spaces, and allowed characters
+	for (i = 0; i < phoneNumber.length(); ++i)
 	{
 		c = phoneNumber[i];
-        if  (!std::isdigit(static_cast<unsigned int>(c)) &&
-            c != ' ' && c != '+' && c != '-' && c != '(' && c != ')')
+		if  (!std::isdigit(static_cast<unsigned int>(c)) &&
+			c != ' ' && c != '+' && c != '-' && c != '(' && c != ')')
 		{
-            return (0); // Invalid character found
-        }
-    }
+			return (0); // Invalid character found
+		}
+	}
 
-    return (1); // Valid phone number
+	return (1); // Valid phone number
 }
 
 /**
@@ -167,11 +167,11 @@ static void	setContactField(std::string& contactField, const std::string prompt,
 		}
 
 		 // Validate phone number if the flag is set
-        if (phoneNr && !isValidPhoneNumber(input))
+		if (phoneNr && !isValidPhoneNumber(input))
 		{
-            std::cout << INV_PHONE_NR << std::endl;
-            continue; // Loop again to get a valid input
-        }
+			std::cout << INV_PHONE_NR << std::endl;
+			continue; // Loop again to get a valid input
+		}
 
 		contactField = input; // Set the contact field
 		return ;

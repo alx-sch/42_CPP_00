@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:43:03 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/30 14:08:39 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 12:41:59 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ Defines ANSI escape codes used for formatting, as well as prompts and error mess
 
 #ifndef CONFIG_HPP
 # define CONFIG_HPP
-
-# define MAX_INPUT		32
 
 // Define ANSI escape codes for colors and styles
 

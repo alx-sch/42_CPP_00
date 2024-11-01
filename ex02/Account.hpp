@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 
-#pragma once
-#ifndef __ACCOUNT_H__
+#pragma once 			// Ensures that header is only included once during compilation
+#ifndef __ACCOUNT_H__	// Safeguards are actually redundant with `#pragma once`
 #define __ACCOUNT_H__
 
 // ************************************************************************** //
@@ -21,38 +21,38 @@ class Account {
 
 public:
 
-	typedef Account		t;
+	typedef Account		t; // Define a type `t` alias for the Account class
 
-	static int	getNbAccounts( void );
-	static int	getTotalAmount( void );
-	static int	getNbDeposits( void );
-	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void );
+	static int	getNbAccounts( void ); 		// Returns the number of accounts
+	static int	getTotalAmount( void );		// Returns the total amount of all accounts
+	static int	getNbDeposits( void );		// Returns the total number of deposits
+	static int	getNbWithdrawals( void );	// Returns the total number of withdrawals
+	static void	displayAccountsInfos( void );	// Displays the number of accounts, total amount, total number of deposits, and total number of withdrawals
 
-	Account( int initial_deposit );
-	~Account( void );
+	Account( int initial_deposit );			// Constructor with initial deposit
+	~Account( void );						// Destructor
 
-	void	makeDeposit( int deposit );
-	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const;
-	void	displayStatus( void ) const;
+	void	makeDeposit( int deposit );		// Deposit money into the account
+	bool	makeWithdrawal( int withdrawal );	// Withdraw money from the account
+	int		checkAmount( void ) const;		// Check the current balance of the account
+	void	displayStatus( void ) const;	// Display the status of the account
 
 
 private:
 
-	static int	_nbAccounts;
-	static int	_totalAmount;
-	static int	_totalNbDeposits;
-	static int	_totalNbWithdrawals;
+	static int	_nbAccounts;				// Number of accounts
+	static int	_totalAmount;				// Total amount of all accounts
+	static int	_totalNbDeposits;			// Total number of deposits
+	static int	_totalNbWithdrawals;		// Total number of withdrawals
 
-	static void	_displayTimestamp( void );
+	static void	_displayTimestamp( void );	// Display the current timestamp
 
-	int				_accountIndex;
-	int				_amount;
-	int				_nbDeposits;
-	int				_nbWithdrawals;
+	int				_accountIndex;			// Account index
+	int				_amount;				// Account balance
+	int				_nbDeposits;			// Number of deposits
+	int				_nbWithdrawals;			// Number of withdrawals
 
-	Account( void );
+	Account( void );						// Default constructor
 
 };
 
