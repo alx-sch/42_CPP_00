@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 16:34:47 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 18:12:51 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ within a phonebook.
 
 #include "main.hpp"
 
-Contacts::Contacts( void ) {}		// Empty / default
+Contacts::Contacts( void ) {}	// Empty / default
 Contacts::~Contacts( void ) {}	// Empty / default
 
 /**
@@ -29,9 +29,13 @@ right-aligned with a width of 10 chars.
 static void truncAndRightAlign( const std::string& str )
 {
 	if (str.length() > 10)
+	{
 		std::cout << str.substr(0, 9) << ".";	// Print the first 9 chars followed by a dot
+	}
 	else
+	{
 		std::cout << std::setw(10) << str;		// Print entire string right-aligned with width of 10 chars.
+	}
 }
 
 /**

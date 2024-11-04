@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:48 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/30 14:14:14 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 18:16:01 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int main(void)
 			break ;
 		}
 		else
+		{
 			std::cout << ERR_NOT_FOUND << std::endl;
+		}
 	}
 
 	return (0);

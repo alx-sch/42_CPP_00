@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 16:22:16 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 18:14:26 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ static void	printSelectionPrompt( int nrContacts )
 Handles user input for selecting a contact from the phonebook.
 
  @return 	The index of the selected contact (zero-based);
-			`-1` if the user input is empty.
+			`-1` if the user input is empty;
+			`-2` if the user input is '0' or not a number.
 */
 static int getUserInput( void )
 {
@@ -105,6 +106,12 @@ static int getUserInput( void )
 
 	// Convert input to integer and adjust for zero-based index
 	indexSelect = atoi(input.c_str()) - 1;
+
+	// Check if input is a valid index
+	if (indexSelect == -1)
+	{
+		return -2;
+	}
 
 	return indexSelect;
 }
@@ -133,7 +140,8 @@ void selectAndDisplayContact( int nrContacts, Contacts contacts[8] )
 		{
 			contacts[indexSelect].printContactAll();
 			return ;
-		} else	// Invalid selection, select again
+		}
+		else	// Invalid selection, select again
 		{
 			std::cout << INV_IDX << std::endl;
 		}
