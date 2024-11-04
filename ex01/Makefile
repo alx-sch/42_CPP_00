@@ -60,7 +60,7 @@ RED :=			\033[91m
 all:		$(NAME)
 
 # Target $(NAME) depends on object files $(OBJS)
-# Print out 'Thinking Philosopher' once program is compiled.
+# Print out logo once program is compiled.
 $(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(BOLD)$(YELLOW)\n$(NAME) successfully compiled.$(RESET)"

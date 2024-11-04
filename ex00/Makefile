@@ -44,7 +44,7 @@ RED :=			\033[91m
 all:		$(NAME)
 
 # Target $(NAME) depends on object files $(OBJS)
-# Print out 'Thinking Philosopher' once program is compiled.
+# Print out l once program is compiled.
 $(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(BOLD)$(YELLOW)\n$(NAME) successfully compiled.$(RESET)"
@@ -66,7 +66,7 @@ $(NAME):	$(OBJS)
 # -c:		Generates o. files without linking.
 # -$<:		Represents the first prerequisite (the c. file).
 # -o $@:	Output file name;  '$@' is replaced with target name (the o. file).
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
+%.o:	%.cpp
 	@mkdir -p $(@D)
 	@$(eval SRC_NUM := $(shell expr $(SRC_NUM) + 1))
 	@$(eval PERCENT := $(shell printf "%.0f" $(shell echo "scale=4; $(SRC_NUM) / $(TOTAL_SRCS) * 100" | bc)))

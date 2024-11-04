@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:43:27 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 16:40:56 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:06:07 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,22 @@
 #include <fstream>
 #include <ctime>
 
+// Utility function to get the current time adjusted for UTC+1
+std::time_t   getCurrentTime()
+{
+    std::time_t now = std::time(nullptr);
+    now += 3600; // Adjust for UTC+1
+    return now;
+}
+
 // Function to get the log file stream
 std::ofstream& getLogFile() {
     static std::ofstream logFile;
     static bool initialized = false;
 
     if (!initialized) {
-        // Get current time
-        std::time_t now = std::time(nullptr);
-        now += 3600; // Adjust for UTC+1
-        char buf[20];
+        std::time_t now = getCurrentTime();
+        char buf[20]; // Reduced buffer size to 16
         std::strftime(buf, sizeof(buf), "%Y%m%d_%H%M%S.log", std::localtime(&now));
         logFile.open(buf);
         initialized = true;
@@ -41,10 +47,8 @@ int Account::_totalNbWithdrawals = 0;
 
 // Utility function to log output with a timestamp
 void Account::_displayTimestamp() {
-    // Get current time
-    std::time_t now = std::time(nullptr);
-    now += 3600; // Adjust for UTC+1
-    char buf[20];
+    std::time_t now = getCurrentTime();
+    char buf[16]; // Reduced buffer size to 16
     std::strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S] ", std::localtime(&now));
     getLogFile() << buf;
 }
