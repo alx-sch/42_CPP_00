@@ -32,10 +32,10 @@ public:
 	Account( int initial_deposit );			// Constructor with initial deposit
 	~Account( void );						// Destructor
 
-	void	makeDeposit( int deposit );		// Deposit money into the account
-	bool	makeWithdrawal( int withdrawal );	// Withdraw money from the account
-	int		checkAmount( void ) const;		// Check the current balance of the account
-	void	displayStatus( void ) const;	// Display the status of the account
+	void		makeDeposit( int deposit );		// Deposit money into the account
+	bool		makeWithdrawal( int withdrawal );	// Withdraw money from the account
+	int			checkAmount( void ) const;		// Check the current balance of the account
+	void		displayStatus( void ) const;	// Display the status of the account
 
 
 private:
@@ -47,12 +47,12 @@ private:
 
 	static void	_displayTimestamp( void );	// Display the current timestamp
 
-	int				_accountIndex;			// Account index
-	int				_amount;				// Account balance
-	int				_nbDeposits;			// Number of deposits
-	int				_nbWithdrawals;			// Number of withdrawals
+	int			_accountIndex;				// Account index
+	int			_amount;					// Account balance
+	int			_nbDeposits;				// Number of deposits
+	int			_nbWithdrawals;				// Number of withdrawals
 
-	Account( void );						// Default constructor
+	Account( void );						// Private default constructor
 
 };
 

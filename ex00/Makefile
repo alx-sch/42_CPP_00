@@ -6,22 +6,23 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/31 12:01:49 by aschenk          ###   ########.fr        #
+#    Updated: 2024/11/04 11:36:05 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME :=			megaphone
 
 # SOURCE FILES
-SRCS :=			$(NAME).cpp
+SRCS :=			megaphone.cpp
 
 # OBJECT FILES
-OBJS :=			$(SRCS:%.cpp=%.o)
+OBJS_DIR :=		obj
+OBJS :=			$(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 
 # COMPILER
 CC :=			c++
-CFLAGS :=		-Werror -Wextra -Wall
-CFLAGS +=		-std=c++98
+CFLAGS :=		-std=c++98
+CFLAGS +=		-Werror -Wextra -Wall
 CFLAGS +=		-Wpedantic
 #CFLAGS +=		-g
 
@@ -66,7 +67,7 @@ $(NAME):	$(OBJS)
 # -c:		Generates o. files without linking.
 # -$<:		Represents the first prerequisite (the c. file).
 # -o $@:	Output file name;  '$@' is replaced with target name (the o. file).
-%.o:	%.cpp
+$(OBJS_DIR)/%.o:	%.cpp
 	@mkdir -p $(@D)
 	@$(eval SRC_NUM := $(shell expr $(SRC_NUM) + 1))
 	@$(eval PERCENT := $(shell printf "%.0f" $(shell echo "scale=4; $(SRC_NUM) / $(TOTAL_SRCS) * 100" | bc)))
@@ -82,7 +83,7 @@ $(NAME):	$(OBJS)
 
 # Rule to remove all generated object files.
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJS_DIR)
 	@echo "$(BOLD)$(RED)$(NAME) object files removed.$(RESET)"
 
 # Rule to remove all generated object files and the program executable.

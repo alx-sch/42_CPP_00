@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:43:27 by aschenk           #+#    #+#             */
-/*   Updated: 2024/10/30 14:21:01 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 16:38:28 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Converts a character to uppercase and prints it.
 
  @param c 	The character to convert and print.
 */
-static void shout(char c)
+static void shout( char c )
 {
 	std::cout << (char)toupper(c);
 }
@@ -34,7 +34,7 @@ uppercase and prints them to the standard output.
 
  @return 		`0` upon successful execution.
 */
-int main(int argc, char **argv)
+int main( int argc, char **argv )
 {
 	int			i;
 	size_t		j;
@@ -56,5 +56,5 @@ int main(int argc, char **argv)
 		}
 		std::cout << std::endl;
 	}
-	return (0);
+	return 0;
 }

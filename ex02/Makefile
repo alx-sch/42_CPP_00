@@ -6,7 +6,7 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/11/01 15:49:22 by aschenk          ###   ########.fr        #
+#    Updated: 2024/11/04 14:45:38 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,17 @@ SRCS :=			Account.cpp \
 				tests.cpp
 
 # OBJECT FILES
-OBJS :=			$(SRCS:%.cpp=%.o)
+OBJS_DIR :=		obj
+OBJS :=			$(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 
 # HEADER FILES
 HDRS :=			Account.hpp
 
 # COMPILER
 CC :=			c++
-CFLAGS :=		-Werror -Wextra -Wall
+CFLAGS :=		-std=c++98
+CFLAGS +=		-Werror -Wextra -Wall
 CFLAGS +=		-I$(HDRS_DIR)
-CFLAGS +=		-std=c++98
 CFLAGS +=		-Wpedantic
 #CFLAGS +=		-g
 
@@ -72,7 +73,7 @@ $(NAME):	$(OBJS)
 # -c:		Generates o. files without linking.
 # -$<:		Represents the first prerequisite (the c. file).
 # -o $@:	Output file name;  '$@' is replaced with target name (the o. file).
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp $(HDRS)
+$(OBJS_DIR)/%.o:	%.cpp $(HDRS)
 	@mkdir -p $(@D)
 	@$(eval SRC_NUM := $(shell expr $(SRC_NUM) + 1))
 	@$(eval PERCENT := $(shell printf "%.0f" $(shell echo "scale=4; $(SRC_NUM) / $(TOTAL_SRCS) * 100" | bc)))
@@ -88,7 +89,7 @@ $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp $(HDRS)
 
 # Rule to remove all generated object files.
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJS_DIR)
 	@echo "$(BOLD)$(RED)$(NAME) object files removed.$(RESET)"
 
 # Rule to remove all generated object files, the program executable, and log files.

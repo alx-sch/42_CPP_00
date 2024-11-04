@@ -6,7 +6,7 @@
 #    By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:24:25 by aschenk           #+#    #+#              #
-#    Updated: 2024/10/30 13:50:42 by aschenk          ###   ########.fr        #
+#    Updated: 2024/11/04 11:36:15 by aschenk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ HDRS :=			$(addprefix $(HDRS_DIR)/, $(HDRS_FILES))
 
 # COMPILER
 CC :=			c++
-CFLAGS :=		-Werror -Wextra -Wall
+CFLAGS :=		-std=c++98
+CFLAGS +=		-Werror -Wextra -Wall
 CFLAGS +=		-I$(HDRS_DIR)
-CFLAGS +=		-std=c++98
 CFLAGS +=		-Wpedantic
 #CFLAGS +=		-g
 

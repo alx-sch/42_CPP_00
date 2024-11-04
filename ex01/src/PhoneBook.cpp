@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 15:34:51 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 16:22:16 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ Implementation of the `PhoneBook` class, managing contact storage and display.
 
 #include "main.hpp"
 
-PhoneBook::PhoneBook() : _nrContacts(0) {}	// List initialization of _nrContacts
+// Initialization of static member
 
-PhoneBook::~PhoneBook() {}	// Empty / default
+int			PhoneBook::_nrContacts = 0;
+Contacts 	PhoneBook::_contacts[8];
+
+PhoneBook::PhoneBook( void ) {}		// Empty / default
+PhoneBook::~PhoneBook( void ) {}	// Empty / default
 
 /**
 Adds a new contact to the phonebook.
@@ -27,16 +31,113 @@ If the phonebook is full, it overwrites the oldest entry.
 
  @note 	The available indices range from 0 to 7 in the implementation,
 		but represent entries 1 to 8 in the phonebook.
- */
-void	PhoneBook::addContact()
+*/
+void	PhoneBook::addContact( void )
 {
-	int			index;
+	int	index;
 
-	index = this->_nrContacts % 8;
-	this->_contacts[index].addContact();
-	this->_nrContacts++;
+	index = _nrContacts % 8;
+	_contacts[index].addContact();
+	_nrContacts++;
+}
 
-	return ;
+/**
+Prints an overview of the contacts stored in the phonebook.
+
+ @param nrContacts 	The number of contacts to display.
+ @param contacts 	The array of contacts to display.
+*/
+static void	printContactList( int nrContacts, Contacts contacts[8] )
+{
+	int	index;
+
+	std::cout << IDX_TABLE << std::endl;
+	index = 0;
+	while(index < nrContacts && index < 8)
+	{
+		contacts[index].printContactOverview(index);
+		index++;
+	}
+	std::cout << std::endl;
+}
+
+/**
+Prints the prompt for selecting a contact from the phonebook.
+
+ @param	nrContacts 	The number of contacts in the phonebook.
+*/
+static void	printSelectionPrompt( int nrContacts )
+{
+	if (nrContacts == 1)
+	{
+		std::cout << SEL_CONTACT_1;
+	}
+	else
+	{
+		std::cout << SEL_CONTACT << YELLOW << std::min(nrContacts, 8) << "): " RESET;
+	}
+}
+
+/**
+Handles user input for selecting a contact from the phonebook.
+
+ @return 	The index of the selected contact (zero-based);
+			`-1` if the user input is empty.
+*/
+static int getUserInput( void )
+{
+	std::string	input;
+	int 		indexSelect;
+
+	std::getline(std::cin, input);
+
+	// Check for EOF in user input (CTRL + D)
+	if (std::cin.eof())
+	{
+		exitEOF();
+	}
+
+	// Check if input is empty (user pressed Enter without typing anything)
+	if (input.empty())
+	{
+		return -1;
+	}
+
+	// Convert input to integer and adjust for zero-based index
+	indexSelect = atoi(input.c_str()) - 1;
+
+	return indexSelect;
+}
+
+/**
+Selects and displays a contact from the phonebook.
+
+ @param nrContacts 	The number of contacts in the phonebook.
+ @param contacts 	The array of contacts in the phonebook.
+*/
+void selectAndDisplayContact( int nrContacts, Contacts contacts[8] )
+{
+	int indexSelect;
+
+	while (true)
+	{
+		printSelectionPrompt(nrContacts);
+		indexSelect = getUserInput();
+
+		if (indexSelect == -1)	// User input is empty
+		{
+			return ;
+		}
+
+		if (indexSelect >= 0 && indexSelect < nrContacts && indexSelect < 8) // Valid selection
+		{
+			contacts[indexSelect].printContactAll();
+			return ;
+		} else	// Invalid selection, select again
+		{
+			std::cout << INV_IDX << std::endl;
+		}
+	}
 }
 
 /**
@@ -48,68 +149,18 @@ and prompts the user to select one by entering the corresponding index number.
 The function handles invalid input and selection, providing appropriate feedback
 to the user.
 */
-void	PhoneBook::showContacts() const
+void	PhoneBook::showContacts( void )
 {
-	int			index;
-	int			indexSelect;
-	std::string	input;
-
 	// If there are no contacts added yet
-	if (this->_nrContacts == 0)
+	if (_nrContacts == 0)
 	{
 		std::cout << IDX_TABLE << std::endl << std::endl;
 		std::cout << NO_CONTACTS << std::endl;
 		return ;
 	}
 
-	// Print list of contacts
-	std::cout << IDX_TABLE << std::endl;
-	index = 0;
-	while(index < this->_nrContacts && index < 8)
-	{
-		this->_contacts[index].printContactOverview(index);
-		index++;
-	}
-	std::cout << std::endl;
+	printContactList(_nrContacts, _contacts);
 
 	// Contact selection / display
-	while (true)
-	{
-		// Prompt user to select a contact
-		if (this->_nrContacts == 1)
-		{
-			std::cout << SEL_CONTACT_1;
-		}
-		else
-		{
-			std::cout << SEL_CONTACT << YELLOW << std::min(_nrContacts, 8) << "): " RESET;
-		}
-
-		std::getline(std::cin, input);
-
-		 // Check for EOF in user input (CTRL + D)
-		if (std::cin.eof())
-		{
-			exitEOF();
-		}
-
-		// Check if input is empty (user pressed Enter without typing anything)
-		if (input.empty())
-		{
-			break ;
-		}
-
-		// Process user input (index selection)
-		indexSelect = atoi(input.c_str());  // Converts input to const char* and then to int
-		indexSelect -= 1;
-		if (indexSelect >= 0 && indexSelect < this->_nrContacts && indexSelect < 8) // Valid selection
-		{
-			this->_contacts[indexSelect].printContactAll();
-			break ;
-		}
-		else // Invalid selection
-			std::cout << INV_IDX << std::endl;
-	}
-
-	return ;
+	selectAndDisplayContact(_nrContacts, _contacts);
 }

@@ -6,9 +6,13 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:01:16 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 12:41:43 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 15:42:19 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+The primary inclusion point for the program, containing all necessary headers and utility functions.
+*/
 
 # include <stdlib.h>	// for exit(), atoi()
 # include <iostream>	// for std::cout, std::cin
@@ -21,4 +25,4 @@
 
 // utils.cpp
 
-void	exitEOF();
+void	exitEOF( void );

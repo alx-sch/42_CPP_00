@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/01 15:34:05 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/04 16:34:47 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ within a phonebook.
 
 #include "main.hpp"
 
-Contacts::Contacts() {}		// Empty / default
-
-Contacts::~Contacts() {}	// Empty / default
+Contacts::Contacts( void ) {}		// Empty / default
+Contacts::~Contacts( void ) {}	// Empty / default
 
 /**
 Truncates the input string to 10 chars, if need be, and prints the string,
@@ -27,14 +26,12 @@ right-aligned with a width of 10 chars.
 
  @param str 	The string to be truncated and printed.
 */
-static void truncAndRightAlign(const std::string& str)
+static void truncAndRightAlign( const std::string& str )
 {
 	if (str.length() > 10)
 		std::cout << str.substr(0, 9) << ".";	// Print the first 9 chars followed by a dot
 	else
 		std::cout << std::setw(10) << str;		// Print entire string right-aligned with width of 10 chars.
-
-	return ;
 }
 
 /**
@@ -44,7 +41,7 @@ Each field is 10 chars wide, truncated if necessary and right-aligned.
 
  @param index 	The index of the contact in the phonebook, adjusted for display (1-based).
 */
-void	Contacts::printContactOverview(int index) const
+void	Contacts::printContactOverview( int index ) const
 {
 	std::ostringstream oss; // Type of output stream that holds its data in a string buffer (Output String Stream)
 
@@ -61,22 +58,16 @@ void	Contacts::printContactOverview(int index) const
 	truncAndRightAlign(this->_nickname);
 	std::cout << PIPE;
 	std::cout << std::endl;
-
-	return ;
 }
 
-/**
-Prints all contact information fields for this specific contact instance.
-*/
-void	Contacts::printContactAll() const
+// Prints all contact information fields for this specific contact instance.
+void	Contacts::printContactAll( void ) const
 {
 	std::cout << std::setw(16) << "First name: " << BOLD << this->_firstName << RESET << std::endl;
 	std::cout << std::setw(16) << "Last name: " << BOLD <<  this->_lastName << RESET << std::endl;
 	std::cout << std::setw(16) << "Nickname: " << BOLD << this->_nickname << RESET << std::endl;
 	std::cout << std::setw(16) << "Phone number: " << BOLD << this->_phoneNumber << RESET << std::endl;
 	std::cout << std::setw(16) << "Darkest secret: " << BOLD << this->_darkestSecret << RESET << std::endl;
-
-	return ;
 }
 
 /**
@@ -87,7 +78,7 @@ Checks if a given string is empty or contains only whitespace characters.
  @return 		`1` if the string is empty or contains only whitespace characters;
 				`0` if the string contains any non-whitespace characters.
 */
-static int isEmptyOrWhitespace(const std::string& str)
+static int isEmptyOrWhitespace( const std::string& str )
 {
 	size_t	i;
 
@@ -119,7 +110,7 @@ such as '+', '-', '(', and ')'.
  @return 				`1` if the phone number is valid;
 						`0` if it contains any invalid characters.
 */
-static int isValidPhoneNumber(const std::string& phoneNumber)
+static int isValidPhoneNumber( const std::string& phoneNumber )
 {
 	size_t	i;
 	char 	c;
@@ -145,7 +136,7 @@ Prompts the user to input a value for a specified contact field.
  @param prompt 			A string used to prompt the user for the desired input.
  @param phoneNr 		A flag indicating whether to validate the input as a phone number (1 to validate, 0 otherwise).
 */
-static void	setContactField(std::string& contactField, const std::string prompt, int phoneNr)
+static void	setContactField( std::string& contactField, const std::string prompt, int phoneNr )
 {
 	std::string	input;
 
@@ -196,6 +187,4 @@ void	Contacts::addContact()
 	setContactField(this->_nickname, "[Nickname] > ", 0);
 	setContactField(this->_phoneNumber, "[Phone number] > ", 1);
 	setContactField(this->_darkestSecret, "[Darkest secret] > ", 0);
-
-	return ;
 }
