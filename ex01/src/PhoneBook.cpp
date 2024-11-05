@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 18:14:26 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/05 13:07:48 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ Handles user input for selecting a contact from the phonebook.
 			`-1` if the user input is empty;
 			`-2` if the user input is '0' or not a number.
 */
-static int getUserInput( void )
+static int getContactIndex( void )
 {
 	std::string	input;
 	int 		indexSelect;
@@ -107,7 +107,7 @@ static int getUserInput( void )
 	// Convert input to integer and adjust for zero-based index
 	indexSelect = atoi(input.c_str()) - 1;
 
-	// Check if input is a valid index
+	// Input is not a number or is '0'
 	if (indexSelect == -1)
 	{
 		return -2;
@@ -117,7 +117,8 @@ static int getUserInput( void )
 }
 
 /**
-Selects and displays a contact from the phonebook.
+Prompts user to select a contact from the phonebook and displays respective
+contact details.
 
  @param nrContacts 	The number of contacts in the phonebook.
  @param contacts 	The array of contacts in the phonebook.
@@ -129,7 +130,8 @@ void selectAndDisplayContact( int nrContacts, Contacts contacts[8] )
 	while (true)
 	{
 		printSelectionPrompt(nrContacts);
-		indexSelect = getUserInput();
+
+		indexSelect = getContactIndex();
 
 		if (indexSelect == -1)	// User input is empty
 		{
@@ -141,7 +143,7 @@ void selectAndDisplayContact( int nrContacts, Contacts contacts[8] )
 			contacts[indexSelect].printContactAll();
 			return ;
 		}
-		else	// Invalid selection, select again
+		else	// Invalid selection -> select again
 		{
 			std::cout << INV_IDX << std::endl;
 		}
@@ -168,7 +170,5 @@ void	PhoneBook::showContacts( void )
 	}
 
 	printContactList(_nrContacts, _contacts);
-
-	// Contact selection / display
 	selectAndDisplayContact(_nrContacts, _contacts);
 }
