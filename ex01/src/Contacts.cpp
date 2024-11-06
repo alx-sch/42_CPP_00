@@ -6,13 +6,13 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/06 17:26:26 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:27:51 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
 Implementation of the `Contacts` class, which manages individual contact information
-within a phonebook.  
+within a phonebook.
 */
 
 #include "main.hpp"
