@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:42 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 18:12:51 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:14:54 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	Contacts::printContactOverview( int index ) const
 }
 
 // Prints all contact information fields for this specific contact instance.
-void	Contacts::printContactAll( void ) const
+void	Contacts::printContactDetails( void ) const
 {
 	std::cout << std::setw(16) << "First name: " << BOLD << this->_firstName << RESET << std::endl;
 	std::cout << std::setw(16) << "Last name: " << BOLD <<  this->_lastName << RESET << std::endl;
@@ -183,9 +183,6 @@ nickname, phone number, and darkest secret of the contact.
 */
 void	Contacts::addContact()
 {
-	std::string	input;
-	PhoneBook	Phone;
-
 	setContactField(this->_firstName, "[First name] > ", 0);
 	setContactField(this->_lastName, "[Last name] > ", 0);
 	setContactField(this->_nickname, "[Nickname] > ", 0);

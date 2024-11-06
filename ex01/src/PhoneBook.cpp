@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:50:05 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/05 13:07:48 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:14:10 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@ Implementation of the `PhoneBook` class, managing contact storage and display.
 
 #include "main.hpp"
 
-// Initialization of static member
-
-int			PhoneBook::_nrContacts = 0;
-Contacts 	PhoneBook::_contacts[8];
-
-PhoneBook::PhoneBook( void ) {}		// Empty / default
+PhoneBook::PhoneBook( void ) :	_nrContacts(0) {}
 PhoneBook::~PhoneBook( void ) {}	// Empty / default
 
 /**
@@ -36,9 +31,9 @@ void	PhoneBook::addContact( void )
 {
 	int	index;
 
-	index = _nrContacts % 8;
-	_contacts[index].addContact();
-	_nrContacts++;
+	index = this->_nrContacts % 8;
+	this->_contacts[index].addContact();
+	this->_nrContacts++;
 }
 
 /**
@@ -88,7 +83,8 @@ Handles user input for selecting a contact from the phonebook.
 static int getContactIndex( void )
 {
 	std::string	input;
-	int 		indexSelect;
+	long 		indexSelect;
+	char		*endPtr;
 
 	std::getline(std::cin, input);
 
@@ -104,11 +100,14 @@ static int getContactIndex( void )
 		return -1;
 	}
 
-	// Convert input to integer and adjust for zero-based index
-	indexSelect = atoi(input.c_str()) - 1;
+	indexSelect = strtol(input.c_str(), &endPtr, 10);	// Convert input to `long`
+	indexSelect -= 1;	// Adjust for zero-based index
 
-	// Input is not a number or is '0'
-	if (indexSelect == -1)
+	std::cout << "Index select is " << indexSelect << std::endl;
+
+	// Check for invalid input
+	if (*endPtr != '\0'			// Input contains non-numeric characters after the number
+		|| indexSelect == -1)	// Input is '0' or starts with non-numeric chars (to distinguish return from empty input)
 	{
 		return -2;
 	}
@@ -140,7 +139,7 @@ void selectAndDisplayContact( int nrContacts, Contacts contacts[8] )
 
 		if (indexSelect >= 0 && indexSelect < nrContacts && indexSelect < 8) // Valid selection
 		{
-			contacts[indexSelect].printContactAll();
+			contacts[indexSelect].printContactDetails();
 			return ;
 		}
 		else	// Invalid selection -> select again
@@ -162,13 +161,13 @@ to the user.
 void	PhoneBook::showContacts( void )
 {
 	// If there are no contacts added yet
-	if (_nrContacts == 0)
+	if (this->_nrContacts == 0)
 	{
 		std::cout << IDX_TABLE << std::endl << std::endl;
 		std::cout << NO_CONTACTS << std::endl;
 		return ;
 	}
 
-	printContactList(_nrContacts, _contacts);
-	selectAndDisplayContact(_nrContacts, _contacts);
+	printContactList(this->_nrContacts, this->_contacts);
+	selectAndDisplayContact(this->_nrContacts, this->_contacts);
 }

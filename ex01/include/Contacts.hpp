@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:49:34 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 16:28:45 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:12:19 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class	Contacts
 
 		void	addContact( void );							// Add a contact
 		void	printContactOverview( int index ) const;	// Print an overview for this contact
-		void	printContactAll( void ) const;				// Print details for this contact
+		void	printContactDetails( void ) const;				// Print details for this contact
 
 	private:
 

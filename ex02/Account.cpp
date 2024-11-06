@@ -6,7 +6,7 @@
 /*   By: aschenk <aschenk@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:54:20 by aschenk           #+#    #+#             */
-/*   Updated: 2024/11/04 15:34:27 by aschenk          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:17:11 by aschenk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@
 /****************************************/
 
 /**
-Gets the current time in seconds (std::time_t) since epoch and adjusts it for UTC+1.
+Gets the current time in seconds (std::time_t) since epoch.
 
- @return `std::time_t`: 	The current time in seconds since epoch adjusted for UTC+1.
+ @return `std::time_t`: 	The current time in seconds since epoch.
 */
 static std::time_t	getCurrentTime( void )
 {
 	std::time_t	now;
 
 	std::time(&now);	// Get current time in seconds since epoch
-	now += 3600;		// Adjust for UTC+1 (3600s = 1h)
-
 	return now;
 }
 
